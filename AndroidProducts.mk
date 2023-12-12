@@ -9,5 +9,4 @@ PRODUCT_MAKEFILES := \
     $(LOCAL_DIR)/twrp_BF7.mk
 
 COMMON_LUNCH_CHOICES := \
-    
-    omni_TECNO-BF7-eng
+     twrp_BF7-eng
