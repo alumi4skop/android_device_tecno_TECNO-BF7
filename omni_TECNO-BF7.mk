@@ -1,29 +1,28 @@
 #
-# Copyright (C) 2023 The Android Open Source Project
-# Copyright (C) 2023 SebaUbuntu's TWRP device tree generator
+# Copyright (C) 2022 The Android Open Source Project
+# Copyright (C) 2022 SebaUbuntu's TWRP device tree generator
 #
 # SPDX-License-Identifier: Apache-2.0
 #
 
 # Inherit from those products. Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/base.mk)
 
-# Inherit some common Omni stuff.
-$(call inherit-product, vendor/omni/config/common.mk)
+# Installs gsi keys into ramdisk, to boot a developer GSI with verified boot.
+$(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_keys.mk)
 
-# Inherit from TECNO-BF7 device
-$(call inherit-product, device/tecno/TECNO-BF7/device.mk)
+# Inherit from BF7 device
+$(call inherit-product, device/tecno/BF7/device.mk)
 
-PRODUCT_DEVICE := TECNO-BF7
-PRODUCT_NAME := omni_TECNO-BF7
+# Inherit some common TWRP stuff.
+$(call inherit-product, vendor/twrp/config/common.mk)
+
+PRODUCT_DEVICE := BF7
+PRODUCT_NAME := twrp_BF7
 PRODUCT_BRAND := TECNO
-PRODUCT_MODEL := TECNO BF7
+PRODUCT_MODEL := TECNO Pop 7 Pro
 PRODUCT_MANUFACTURER := tecno
-
-PRODUCT_GMS_CLIENTID_BASE := android-tecno
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
     PRIVATE_BUILD_DESC="vnd_bf7_h6127-user 12 SP1A.210812.016 274334 release-keys"
-
-BUILD_FINGERPRINT := TECNO/BF7-GL/TECNO-BF7:12/SP1A.210812.016/230315V839:user/release-keys
